@@ -478,6 +478,45 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 "mensagem": Erro de banco de dados
             ]
         }
+        
+## Dispositivos ativação [/device/activation/{hash}]
+
+### Consultar ativação de Dispositivo [GET]
+
+
++ Response 200 (application/json)
+
+        {
+            "api_key":"1223213213312321"
+        }   
+       
++ Response 201 (application/json)
+    
+           {
+                "create_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/device/1"
+           }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }    
+        
 #group  Integração
 ## Integração [/integration]
 
