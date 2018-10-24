@@ -1,0 +1,3608 @@
+FORMAT: 1A
+
+#  Api intranet
+
+Api que da suporte as funcionalidades da intranet que faz a gestão de estados dos dispositivos e programas.
+
+## Autenticação [/auth]
+
+
+
+### Executar autenticação [POST]
+
++ Request (application/json)
+
+        {
+            "User": "a@a",
+            "Senha": "Segredo"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+               "Generated":"true",
+               "DtCriation":"2018-10-30",
+               "DtExpiration":"2018-10-30",
+               "Token":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+               "Message":"Ok"
+            }
+            
++ Response 403 (application/json)
+
+    + Body
+
+            {
+               "Generated":"true",
+               "DtCriation":"2018-10-30",
+               "DtExpiration":"2018-10-30",
+               "Token":"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+               "Message":"Ok"
+            }
+            
+# Group Funcionalidades
+
+## Funcionalidades por usuário e nó raiz [/feature/{username}/{raiz}]
+
+### Retornar Funcionalidades por usuário e nó raiz [GET]
++ Parameters
+    + username (string) - Nome de usuário que se deseja retornar as funcionalidades
+    + raiz (string) - Nome do nó raiz de funcionalidades que representa o programa
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+                [
+                    {
+                         "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",   
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+## Funcionalidades por hash de dispositivo e nó raiz [/features/{hash}/{raiz}]
+
+### Retornar Funcionalidades por hash de dispositivo e nó raiz [GET]
++ Parameters
+    + hash (string) - Hash do dispositivo para o qual se deseja retornar as funcionalidades
+    + raiz (string) - Nome do nó raiz de funcionalidades que representa o programa
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+                [
+                    {
+                        "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+## Funcionalidades [/feature]
+
+### Incluir Funcionalidade [POST]
+
++ Request (application/json)
+
+        {
+            "Description": "a@a",
+            "Icon": "MaterialIcon",
+            "ParentId":"1"
+        }
+        
++ Response 201 (application/json)
+    
+           {
+                "create_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/feature/1"
+           }
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+### Retornar todas as Funcionalidade [GET]
+
++ Response 200 (application/json)
+
+    + Body 
+    
+            {
+                [
+                    {
+                        "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }     
+
+## Funcionalidade identificada [/feature/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Funcionalidade [PUT]
+
++ Request (application/json)
+
+        {
+            "Description": "a@a",
+            "Icon": "MaterialIcon",
+            "ParentId":"1",
+            "Id":"1"
+        }
+        
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/feature/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar Funcionalidade específica [GET]
++ Response 200
+
+         {
+            "Description": "a@a",
+            "Icon": "MaterialIcon",
+            "ParentId":"1",
+            "Id":"1",
+            "SubFeatures":[]
+        }
++ Response 404
+
+# Group Dispositivos
+
+## Pesquisa de dispositivos [/device/{?hash,type,customer,model,program_version,so_version,place,room,last_signal}]
++ Parameters
+    + hash (optional)       - Hash único auto gerado do dispositivo
+    + type (optional)       - Tipo de dispositivo ex: Câmera, Totem
+    + customer (optional)   - customer para o qual o dispositivo foi designado
+    + model (optional)      - Modelo do dispositivo
+    + program_version (optional)    - Versão do programa principal instalado no dispositivo
+    + so_version (optional) - Versão do So do dispositivo
+    + place (optional)  - Unidade da customer em que o dispositivo se encontra alocado
+    + room (optional)   - Ambiente dentro da unidade que o dispositivo encontra-se alocado
+    + last_signal (optional)    - Tempo em segundo desde do último sinal do tipo hearth beat do dispositivo
+    
+### Retornar Funcionalidade  [GET]
++ Response 200
+
+         [
+             {
+                "Id":"1",
+                "hash": "XXXXXXXXX",
+                "type": {"id":"1","Description":"Câmera"},
+                "customer": {"id":"2","Description":"SF"},
+                "model": {"id":"2","Description":"Camruja"},
+                "program_version":{"id":"2","Description":"2.0"},
+                "so_version":{"id":"2","Description":"Ubuntu 10.2"},
+                "place":{"id":"2","Description":"Especialidades"},
+                "room":{"id":"2","Description":"Recepção"},
+                "Last signal":20000,
+                "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
+            },
+            {
+                "Id":"1",
+                "hash": "XXXXXXXXX",
+                "type": {"id":"1","Description":"Câmera"},
+                "customer": {"id":"2","Description":"SF"},
+                "model": {"id":"2","Description":"Camruja"},
+                "program_version":{"id":"2","Description":"2.0"},
+                "so_version":{"id":"2","Description":"Ubuntu 10.2"},
+                "place":{"id":"2","Description":"Especialidades"},
+                "room":{"id":"2","Description":"Recepção"},
+                "Last signal":20000,
+                "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
+            }
+        ]
+
+
+## Dispositivos [/device]
+
+### Incluir Dispositivo [POST]
+
++ Request (application/json)
+
+        {
+        
+            "hash": "XXXXXXXXX",
+            "type": {"id":"1","Description":""},
+            "customer": {"id":"2","Description":""},
+            "model": {"id":"2","Description":""},
+            "program_version":{"id":"2","Description":""},
+            "so_version":{"id":"2","Description":""},
+            "place":{"id":"2","Description":""},
+            "room":{"id":"2","Description":""},
+            "Last signal":20000,
+            "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
+        }
+        
++ Response 201 (application/json)
+    
+           {
+                "create_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/device/1"
+           }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Dispositivos [GET]
+
++ Response 200 (application/json)
+
+           [
+              {
+                "Id":"1",
+                "hash": "XXXXXXXXX",
+                "type": {"id":"1","Description":""},
+                "customer": {"id":"2","Description":""},
+                "model": {"id":"2","Description":""},
+                "program_version":{"id":"2","Description":""},
+                "so_version":{"id":"2","Description":""},
+                "place":{"id":"2","Description":""},
+                "room":{"id":"2","Description":""},
+                "Last signal":20000,
+                "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
+            },
+            {
+                "Id":"1",
+                "hash": "XXXXXXXXX",
+                "type": {"id":"1","Description":""},
+                "customer": {"id":"2","Description":""},
+                "model": {"id":"2","Description":""},
+                "program_version":{"id":"2","Description":""},
+                "so_version":{"id":"2","Description":""},
+                "place":{"id":"2","Description":""},
+                "room":{"id":"2","Description":""},
+                "Last signal":20000,
+                "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
+            }
+           ]
+           
+           
+
+## Dispositivo identificado [/device/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar dispositivo [PUT]
+
++ Request (application/json)
+
+            {
+                "hash": "XXXXXXXXX",
+                "type": {"id":"1","Description":""},
+                "customer": {"id":"2","Description":""},
+                "model": {"id":"2","Description":""},
+                "program_version":{"id":"2","Description":""},
+                "so_version":{"id":"2","Description":""},
+                "place":{"id":"2","Description":""},
+                "room":{"id":"2","Description":""},
+                "Last signal":20000,
+                "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
+            }
+        
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/device/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Dispositivo específico [GET]
++ Response 200
+
+         {
+                "Id":"1",
+                "hash": "XXXXXXXXX",
+                "type": {"id":"1","Description":"Câmera"},
+                "customer": {"id":"2","Description":"SF"},
+                "model": {"id":"2","Description":"Camruja"},
+                "program_version":{"id":"2","Description":"2.0"},
+                "so_version":{"id":"2","Description":"Ubuntu 10.2"},
+                "place":{"id":"2","Description":"Especialidades"},
+                "room":{"id":"2","Description":"Recepção"},
+                "Last signal":20000,
+                "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
+        }
++ Response 404
+
+#group  Integração
+## Integração [/integration]
+
+### Incluir Integração [POST]
+
++ Request (application/json)
+
+        {
+            "integration_type": "1",
+            "service_url":"http://bla.com",
+            "service_params":[{"chave":"tipo"},{"chave":"tipo"},{"chave":"tipo"}],
+            "customer":"1",
+            "device_type":"1",
+            "status":"ativo" 
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+           {
+                "create_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/integration/1"
+           }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos as Integrações [GET]
+
++ Response 200 (application/json)
+
+           [
+               {
+                "Id":"1",
+                "integration_type": "1",
+                "service_url":"http://bla.com",
+                "service_params":[{"chave":"tipo"},{"chave":"tipo"},{"chave":"tipo"}],
+                "customer":"1",
+                "device_type":"1",
+                "status":"ativo" 
+               },
+                {
+                    "Id":"1",
+                    "integration_type": "1",
+                    "service_url":"http://bla.com",
+                    "service_params":[{"chave":"tipo"},{"chave":"tipo"},{"chave":"tipo"}],
+                    "customer":"1",
+                    "device_type":"1",
+                    "status":"ativo" 
+                 }
+           ]
+           
+           
+
+## Integração identificado [/integration/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Integração [PUT]
+
++ Request (application/json)
+
+           
+        {
+            "integration_type": "1",
+            "service_url":"http://bla.com",
+            "service_params":[{"chave":"tipo"},{"chave":"tipo"},{"chave":"tipo"}],
+            "customer":"1",
+            "device_type":"1",
+            "status":"ativo" 
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/integration/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Integração específica [GET]
++ Response 200
+
+        {
+            "Id":"1",
+            "integration_type": "1",
+            "service_url":"http://bla.com",
+            "service_params":[{"chave":"tipo"},{"chave":"tipo"},{"chave":"tipo"}],
+            "customer":"1",
+            "device_type":"1",
+            "status":"ativo" 
+        }
+           
++ Response 404
+
+
+#group  Tipos de integração
+## Tipos de integração [/integration_type]
+
+### Incluir Tipos de integração [POST]
+
++ Request (application/json)
+
+        {
+            "Description":"Segunda via de boleto",
+            "Status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+           {
+                "create_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/integration_type/1"
+           }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos as Tipos de integração [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "Id":"1",
+                    "Description":"Segunda via de boleto",
+                    "Status":"Ativo"
+                },
+                {
+                    "Id":"2",
+                    "Description":"Extrato de utilização",
+                    "Status":"Ativo"
+                }
+           ]
+           
+           
+
+## Tipos de integração identificado [/integration_type/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Tipos de integração [PUT]
+
++ Request (application/json)
+
+           
+        {
+            "Description": "segunda via de boleto",
+            "status":"ativo" 
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/integration_type/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Tipos de integração específica [GET]
++ Response 200
+
+        {
+            "Id":"1",
+            "Description": "segunda via de boleto",
+            "status":"ativo" 
+        }
+           
++ Response 404
+
+#group  Ambiente
+## Ambiente [/room]
+
+### Incluir Ambiente [POST]
+
++ Request (application/json)
+
+        {
+            "Description":"Sala de espera",
+            "Status":"Ativo",
+            "place":"1"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/room/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Ambiente [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "Id":"1",
+                    "Description":"Sala de espera",
+                    "Status":"Ativo",
+                    "place":"1"
+                },
+                {
+                    "Id":"2",
+                    "Description":"Recepção",
+                    "Status":"Ativo",
+                    "place":"1"
+                }
+           ]
+           
+           
+
+## Ambiente identificado [/room/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Ambiente [PUT]
+
++ Request (application/json)
+
+           
+        {
+            "Description":"Sala de espera",
+            "Status":"Ativo",
+            "place":"1"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/room/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Ambiente específica [GET]
++ Response 200
+
+        {
+            "Id":"1",
+            "Description":"Sala de espera",
+            "Status":"Ativo",
+            "place":"1"
+        }
+           
++ Response 404
+
+
+#group  Ações padrões
+## Ações padrões [/default_action]
+
+### Incluir Ações padrões [POST]
+
++ Request (application/json)
+
+        {
+            "Description":"Ubuntu",
+            "Status":"Ativo"           
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/default_action/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Ações padrões [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "Id":"1",
+                    "Description":"Ubuntu",
+                    "Status":"Ativo"
+                },
+                {
+                    "Id":"2",
+                    "Description":"Solaris",
+                    "Status":"Ativo",
+                    "place":"1"
+                }
+           ]
+           
+           
+
+## Ações padrões identificado [/default_action/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Ações padrões [PUT]
+
++ Request (application/json)
+
+           
+        {
+            "Description":"Ubuntu",
+            "Status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/default_action/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Ações padrões específica [GET]
++ Response 200
+
+        {
+            "Id":"1",
+            "Description":"Ubuntu",
+            "Status":"Ativo"
+        }
+           
++ Response 404
+
+#group  Sistemas Operacionais
+## Sistemas Operacionais [/so]
+
+### Incluir Sistemas Operacionais [POST]
+
++ Request (application/json)
+
+        {
+            "Description":"Ubuntu",
+            "Status":"Ativo"    ,
+            "device_type":"1",
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/so/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Sistemas Operacionais [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "Id":"1",
+                    "Description":"Ubuntu",
+                    "Status":"Ativo"
+                    "device_type":"1",
+                },
+                {
+                    "Id":"2",
+                    "Description":"Solaris",
+                    "Status":"Ativo",
+                    "device_type":"1"
+                }
+           ]
+           
+           
+
+## Sistemas Operacionais identificado [/so/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Sistemas Operacionais [PUT]
+
++ Request (application/json)
+
+           
+        {
+            "Description":"Ubuntu",
+            "Status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/so/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Sistemas Operacionais [GET]
++ Response 200
+
+        {
+            "Id":"1",
+            "device_type":"1",
+            "Description":"Ubuntu",
+            "Status":"Ativo"
+        }
+           
++ Response 404
+
+#group  Tipos dispositivos
+## Tipos de dispositivos [/device_type]
+
+### IncluirTipos de dispositivos [POST]
+
++ Request (application/json)
+
+        {
+            "Description":"Unidade lógica",
+            "Status":"Ativo"    ,
+            "device_type":"1",
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/device_type/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Tipos de dispositivos [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "Id":"1",
+                    "Description":"Unidade lógica",
+                    "Status":"Ativo"
+                },
+                {
+                    "Id":"2",
+                    "Description":"Tablet",
+                    "Status":"Ativo"
+                }
+           ]
+           
+           
+
+## Tipos de dispositivos identificado [/device_type/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Tipos de dispositivos [PUT]
+
++ Request (application/json)
+
+           
+        {
+            "Description":"Unidade lógica",
+            "device_type":"1",
+            "Status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/device_type/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Tipos de dispositivos [GET]
++ Response 200
+
+        {
+            "Id":"1",
+            "Description":"Unidade lógica",
+            "Status":"Ativo"
+        }
+           
++ Response 404
+
+
+
+#group  Abrangência de versão
+## Abrangência de versão [/version_range]
+
+### Incluir Abrangência de versão [POST]
+
++ Request (application/json)
+
+        {
+            "Description":"Estadual",
+            "Params":[{"key":"Estado","url":"http://api/get_estados",params:{"key":"pais",type:"string"}]
+            "Status":"Ativo"    ,
+            "device_type":"1",
+            sub_ranges:[{
+                            "Description":"Estadual",
+                            "Params":[{"key":"Estado","url":"http://api/get_estados",params:{"key":"pais",type:"string"}]
+                            "Status":"Ativo"    ,
+                            "device_type":"1",
+                            sub_ranges:[]
+                        },
+                        {
+                            "Description":"Estadual",
+                            "Params":[{"key":"Estado","url":"http://api/get_estados",params:{"key":"pais",type:"string"}]
+                            "Status":"Ativo"    ,
+                            "device_type":"1",
+                            sub_ranges:[]
+                        }]
+            }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/version_range/1"
+        }
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Abrangência de versão [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                            "Id":"1",
+                            "Description":"Estadual",
+                            "Params":[{"key":"Estado","url":"http://api/get_estados",params:{"key":"pais",type:"string"}]
+                            "Status":"Ativo"    ,
+                            "device_type":"1",
+                            sub_ranges:[]
+                },
+                {
+                            "Id":"2",
+                            "Description":"Estadual",
+                            "Params":[{"key":"Estado","url":"http://api/get_estados",params:{"key":"pais",type:"string"}]
+                            "Status":"Ativo"    ,
+                            "device_type":"1",
+                            sub_ranges:[]
+                }
+           ]
+           
+           
+
+## Abrangência de versão identificado [/version_range/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Tipos de dispositivos [PUT]
+
++ Request (application/json)
+
+           
+                        {
+                            "Description":"Estadual",
+                            "Params":[{"key":"Estado","url":"http://api/get_estados",params:{"key":"pais",type:"string"}]
+                            "Status":"Ativo"    ,
+                            "device_type":"1",
+                            sub_ranges:[]
+                        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/version_range/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Abrangência de versão [GET]
++ Response 200
+
+        {
+                            "Id":"2",
+                            "Description":"Estadual",
+                            "Params":[{"key":"Estado","url":"http://api/get_estados",params:{"key":"pais",type:"string"}]
+                            "Status":"Ativo"    ,
+                            "device_type":"1",
+                            sub_ranges:[]
+        }
+           
++ Response 404
+
+#group  Modelos de dispositivos
+## Modelos de dispositivos [/device_model]
+
+### Incluir Modelos de dispositivos [POST]
+
++ Request (application/json)
+
+        {
+            "Description":"Tablet embratel model B",
+            "Status":"Ativo"    ,
+            "device_type":"1"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/device_model/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Modelos de dispositivos [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                            "Description":"Tablet embratel model B",
+                            "Status":"Ativo"    ,
+                            "device_type":"1"
+                },
+                {
+                            "Description":"Tablet embratel model B",
+                            "Status":"Ativo"    ,
+                            "device_type":"1"
+                }
+           ]
+           
+           
+
+## Abrangência de Modelos de dispositivos [/device_model/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Modelos de dispositivos [PUT]
+
++ Request (application/json)
+
+                        {
+                            "Description":"Tablet embratel model B",
+                            "Status":"Ativo"    ,
+                            "device_type":"1"
+                        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/device_model/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Modelos de dispositivos [GET]
++ Response 200
+
+        {
+                            "Description":"Tablet embratel model B",
+                            "Id",1,
+                            "Status":"Ativo"    ,
+                            "device_type":"1"
+        }
+           
++ Response 404
+
+
+
+#group  Unidades do contratante
+## Unidades do contratante [/place]
+
+### Incluir Unidades do contratante [POST]
+
++ Request (application/json)
+
+        {
+            "description":"Unidade agendamento",
+            "status":"Ativo"    ,
+            "customer_id":"1"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/place/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Unidades do contratante [GET]
+
++ Response 200 (application/json)
+
+           [
+                 {
+                    "description":"Unidade agendamento",
+                    "status":"Ativo"    ,
+                    "customer_id":"1",
+                    "id":"1"
+                },
+                  {
+                    "description":"Unidade pediatria",
+                    "status":"Ativo"    ,
+                    "customer_id":"1",
+                    "id":"2"
+                }
+           ]
+           
+           
+
+## Abrangência de Unidades do contratante [/place/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Unidades do contratante [PUT]
+
++ Request (application/json)
+
+                       {
+                        "description":"Unidade agendamento",
+                        "status":"Ativo"    ,
+                        "customer_id":"1"
+                        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/place/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Unidades do contratante [GET]
++ Response 200
+
+         {
+            "description":"Unidade agendamento",
+            "status":"Ativo"    ,
+            "customer_id":"1",
+            "id":1
+        }
+           
++ Response 404
+
+
+#group  Tipo de contato contratante
+## Tipo de contato contratante [/contact_type]
+
+### Incluir Tipo de contato contratante [POST]
+
++ Request (application/json)
+
+        {
+            "description":"Telefone",
+            "status":"Ativo"   
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/contact_type/1"
+        }
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Tipo de contato contratante [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "description":"Telefone",
+                    "status":"Ativo"   ,
+                    "id":1
+                },
+                {
+                    "description":"Email",
+                    "status":"Ativo"   ,
+                    "id":2
+                }
+            ]
+           
+           
+
+## Tipo de contato contratante [/contact_type/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Tipo de contato contratante [PUT]
+
++ Request (application/json)
+
+        {
+            "description":"Telefone",
+            "status":"Ativo"   
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/contact_type/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Tipo de contato contratante [GET]
++ Response 200
+
+        {
+                    "description":"Telefone",
+                    "status":"Ativo"   ,
+                    "id":1
+        }
+           
++ Response 404
+
+#group  Contatos contratantes
+## Contatos contratantes [/customer_contact]
+
+### Incluir Contatos contratantes [POST]
+
++ Request (application/json)
+
+        {
+            "value":"456456465",
+            "customer_id":1,
+            "contact_type":1,
+            "status":"Ativo"   
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/customer_contact/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Contatos contratantes [GET]
+
++ Response 200 (application/json)
+
+           [
+            {
+                "value":"456456465",
+                "customer_id":1,
+                "contact_type":1,
+                "status":"Ativo"   ,
+                "id":1
+            }
+            ,
+            {
+                "value":"456456465",
+                "customer_id":1,
+                "contact_type":1,
+                "status":"Ativo"   ,
+                "id":1
+            }
+
+            ]
+           
+           
+
+## Contatos contratantes [/customer_contact/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Contatos contratantes [PUT]
+
++ Request (application/json)
+
+        {
+                "value":"456456465",
+                "customer_id":1,
+                "contact_type":1,
+                "status":"Ativo"   
+                
+            }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/customer_contact/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Contatos contratantes [GET]
++ Response 200
+
+        {
+                "value":"456456465",
+                "customer_id":1,
+                "contact_type":1,
+                "status":"Ativo"   ,
+                "id":1
+        }
+           
++ Response 404
+
+#group  Grupos de usuários
+## Grupos de usuários [/user_group]
+
+### Incluir Grupos de usuários [POST]
+
++ Request (application/json)
+
+        {
+            "description":"Administradores",
+            "customer_id":1,
+            "status":"Ativo"   
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/user_group/1"
+        }
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Grupos de usuários [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "description":"Administradores",
+                    "customer_id":1,
+                    "status":"Ativo",
+                    "id":1
+                }
+                ,
+                {
+                    "description":"Administradores",
+                    "customer_id":1,
+                    "status":"Ativo",
+                    "id":2
+                }
+
+            ]
+           
+           
+
+## Grupos de usuários [/user_group/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Grupos de usuários [PUT]
+
++ Request (application/json)
+
+                {
+                    "description":"Administradores",
+                    "customer_id":1,
+                    "status":"Ativo"
+                }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/user_group/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Grupos de usuários [GET]
++ Response 200
+
+        {
+                    "description":"Administradores",
+                    "customer_id":1,
+                    "status":"Ativo",
+                    "id":1
+        }
+           
++ Response 404
+
+#group  Usuários
+## Grupos de usuários [/user]
+
+### Incluir Grupos de usuários [POST]
+
++ Request (application/json)
+
+        {
+            "name":"Vinicius Vieira",
+            "username":"viiniciusjv",
+            "password":"1qaz2wsx",
+            "customer_id":1,
+            "status":"Ativo"   
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/user/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todos os Grupos de usuários [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "name":"Vinicius Vieira",
+                    "username":"viiniciusjv",
+                    "password":"1qaz2wsx",
+                    "customer_id":1,
+                    "status":"Ativo" ,
+                    "id":1
+                },
+                {
+                    "name":"Vinicius Vieira",
+                    "username":"viiniciusjv",
+                    "password":"1qaz2wsx",
+                    "customer_id":1,
+                    "status":"Ativo" ,
+                    "id":2
+                }
+
+            ]
+           
+           
+
+## Grupos de usuários [/user/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Grupos de usuários [PUT]
+
++ Request (application/json)
+
+                {
+                "name":"Vinicius Vieira",
+                "username":"viiniciusjv",
+                "password":"1qaz2wsx",
+                "customer_id":1,
+                "status":"Ativo"
+            }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/user/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Grupos de usuários [GET]
++ Response 200
+
+        {
+                "name":"Vinicius Vieira",
+                "username":"viiniciusjv",
+                "password":"1qaz2wsx",
+                "customer_id":1,
+                "status":"Ativo" ,
+                "id":1
+        }
+           
++ Response 404
+
+#group  Programas
+## Programas [/program]
+
+### Incluir Programas [POST]
+
++ Request (application/json)
+
+        {
+            "description":"Webservice serviços",
+            "status":"Ativo"   
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/program/1"
+        }
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar Programas [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "description":"Webservice serviços",
+                    "status":"Ativo",
+                    "id":1
+                },
+                {
+                    "description":"Webservice serviços",
+                    "status":"Ativo",
+                    "id":2
+                }
+            ]
+           
+           
+
+## Programas [/program/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Programas [PUT]
+
++ Request (application/json)
+
+        {
+            "description":"Webservice serviços",
+            "status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/program/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Programas [GET]
++ Response 200
+
+        {
+            "description":"Webservice serviços",
+            "status":"Ativo",
+            "id":1
+        }
+           
++ Response 404
+
+#group  Versão
+## Versões [/version]
+
+### Incluir Versões [POST]
+
++ Request (application/json)
+
+        {
+            "description":"Webservice serviços",
+            "numero":"1.0.0",
+            "previsao":"2018-10-23",
+            "data_fechamento":"2018-10-23",
+            "program_id":1,
+            "features":[
+                {
+                         "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",   
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                }
+            ],
+            "status":"Ativo"   
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/version/1"
+        }
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar Versões [GET]
+
++ Response 200 (application/json)
+
+           [
+                {
+                    "description":"Webservice serviços",
+                    "numero":"1.0.0",
+                    "previsao":"2018-10-23",
+                    "data_fechamento":"2018-10-23",
+                    "program_id":1,
+                    "features":[
+                        {
+                                 "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",   
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                        }
+                },
+                "status":"Ativo"  ,
+                "id":2
+                },
+                {
+                    "description":"Webservice serviços",
+                    "numero":"1.0.0",
+                    "previsao":"2018-10-23",
+                    "data_fechamento":"2018-10-23",
+                    "program_id":1,
+                    "features":[
+                        {
+                                 "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",   
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                        }
+                },
+                "status":"Ativo" ,
+                "id":2
+                }
+            ]
+           
+           
+
+## Versões [/version/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Versões [PUT]
+
++ Request (application/json)
+
+        {
+                    "description":"Webservice serviços",
+                    "numero":"1.0.0",
+                    "previsao":"2018-10-23",
+                    "data_fechamento":"2018-10-23",
+                    "program_id":1,
+                    "features":[
+                        {
+                                 "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",   
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                        }
+                },
+                "status":"Ativo" 
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/version/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Versões [GET]
++ Response 200
+
+         {
+                    "description":"Webservice serviços",
+                    "numero":"1.0.0",
+                    "previsao":"2018-10-23",
+                    "data_fechamento":"2018-10-23",
+                    "program_id":1,
+                    "features":[
+                        {
+                                 "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",   
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                        }
+                },
+                "status":"Ativo" ,
+                "id":2
+                }
+           
++ Response 404
+
+
+#group  Lançamento de versão
+## Lançamento de versão [/version_launch]
+
+### Incluir Lançamentos Versões [POST]
+
++ Request (application/json)
+
+        {
+                       "version_id":1,
+                       "data_lancamento":"20018-10-10",
+                       "abragencias":[
+                          {
+                             "descricao":"Estadual",
+                             "argumentos":[
+                                {
+                                   "chave":"estado",
+                                   "valor":[
+                                      "SP",
+                                      "MG"
+                                   ]
+                                }
+                             ]
+                          }
+                       ],
+                       "excessoes":[
+                          {
+                             "descricao":"Municipal",
+                             "argumentos":[
+                                {
+                                   "chave":"cidade",
+                                   "valor":[
+                                      "Ribeirão Preto",
+                                      "Poços de caldas"
+                                   ]
+                                }
+                             ]
+                          }
+                       ],
+                       "status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/version_launch/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar Lançamento de versão [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {  
+                       "version_id":1,
+                       "data_lancamento":"20018-10-10",
+                       "abragencias":[  
+                          {  
+                             "descricao":"Estadual",
+                             "argumentos":[  
+                                {  
+                                   "chave":"estado",
+                                   "valor":[  
+                                      "SP",
+                                      "MG"
+                                   ]
+                                }
+                             ]
+                          }
+                       ],
+                       "excessoes":[  
+                          {  
+                             "descricao":"Municipal",
+                             "argumentos":[  
+                                {  
+                                   "chave":"cidade",
+                                   "valor":[  
+                                      "Ribeirão Preto",
+                                      "Poços de caldas"
+                                   ]
+                                }
+                             ]
+                          }
+                       ],
+                       "status":"Ativo"
+                    }
+                ,
+               {  
+                   "version_id":1,
+                   "data_lancamento":"20018-10-10",
+                   "abragencias":[  
+                      {  
+                         "descricao":"Estadual",
+                         "argumentos":[  
+                            {  
+                               "chave":"estado",
+                               "valor":[  
+                                  "SP",
+                                  "MG"
+                               ]
+                            }
+                         ]
+                      }
+                   ],
+                   "excessoes":[  
+                      {  
+                         "descricao":"Municipal",
+                         "argumentos":[  
+                            {  
+                               "chave":"cidade",
+                               "valor":[  
+                                  "Ribeirão Preto",
+                                  "Poços de caldas"
+                               ]
+                            }
+                         ]
+                      }
+                   ],
+                   "status":"Ativo"
+                }
+            ]
+           
+           
+
+## Lançamento de Versões identificada [/version_launch/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Laçamento de versão [PUT]
+
++ Request (application/json)
+
+
+        {  
+           "data_lancamento":"20018-10-10",
+           "abragencias":[  
+              {  
+                 "descricao":"Estadual",
+                 "argumentos":[  
+                    {  
+                       "chave":"estado",
+                       "valor":[  
+                          "SP",
+                          "MG"
+                       ]
+                    }
+                 ]
+              }
+           ],
+           "excessoes":[  
+              {  
+                 "descricao":"Municipal",
+                 "argumentos":[  
+                    {  
+                       "chave":"cidade",
+                       "valor":[  
+                          "Ribeirão Preto",
+                          "Poços de caldas"
+                       ]
+                    }
+                 ]
+              }
+           ],
+           "status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/version_launch/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Lançamentos Versões [GET]
++ Response 200
+
+         {  
+           "version_id":1,
+           "data_lancamento":"20018-10-10",
+           "abragencias":[  
+              {  
+                 "descricao":"Estadual",
+                 "argumentos":[  
+                    {  
+                       "chave":"estado",
+                       "valor":[  
+                          "SP",
+                          "MG"
+                       ]
+                    }
+                 ]
+              }
+           ],
+           "excessoes":[  
+              {  
+                 "descricao":"Municipal",
+                 "argumentos":[  
+                    {  
+                       "chave":"cidade",
+                       "valor":[  
+                          "Ribeirão Preto",
+                          "Poços de caldas"
+                       ]
+                    }
+                 ]
+              }
+           ],
+           "status":"Ativo",
+           id:1
+        }
+           
++ Response 404
+
+#group Permissões Grupo
+## Permissões Grupo [/group_privilege]
+
+### Incluir Permissões Grupo [POST]
+
++ Request (application/json)
+
+        {
+            "group_id":1,
+            "permissoes":[
+                {
+                        "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+            ],
+            "status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/group_privilege/1"
+        }
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todas permissões Grupo [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {
+                       "id":1,
+                    "group_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                },
+                {
+                    "id":2,
+                    "group_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                }
+            ]
+           
+           
+
+## Permissões Grupo identificadas [/group_privilege/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Permissões Grupo [PUT]
+
++ Request (application/json)
+
+
+        {
+                    "group_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/group_privilege/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Permissões Grupo [GET]
++ Response 200
+
+         {
+                    "id":1,
+                    "group_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                }
+           
++ Response 404
+
+
+#group Permissões Usuários
+## Permissões Usuário [/user_privilege]
+
+### Incluir Permissões Usuário [POST]
+
++ Request (application/json)
+
+        {
+            "user_id":1,
+            "permissoes":[
+                {
+                        "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Id":"1",
+                        "Description":"Dispositivo",
+                        "Icon":"Materialicon",
+                        "SubFeatures":[
+                            {
+                                "Id":"1",
+                                "Description":"Controle",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Incluir",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+            ],
+            "status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/user_privilege/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todas permissões Usuário [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {
+                       "id":1,
+                    "group_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                },
+                {
+                    "id":2,
+                    "user_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                }
+            ]
+           
+           
+
+## Permissões Usuário identificadas [/user_privilege/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Permissões Usuário [PUT]
+
++ Request (application/json)
+
+
+        {
+                    "user_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/user_privilege/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Permissões Usuário [GET]
++ Response 200
+
+         {
+                    "id":1,
+                    "user_id":1,
+                    "permissoes":[
+                        {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "Id":"1",
+                                "Description":"Dispositivo",
+                                "Icon":"Materialicon",
+                                "SubFeatures":[
+                                    {
+                                        "Id":"1",
+                                        "Description":"Controle",
+                                        "Icon":"Materialicon",
+                                        "SubFeatures":[
+                                            {
+                                                "Id":"1",
+                                                "Description":"Incluir",
+                                                "Icon":"Materialicon",
+                                                "SubFeatures":""
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                    ],
+                    "status":"Ativo"
+                }
+           
++ Response 404
+
+# Group Beneficiário
+## Beneficiário identificado [/beneficiary/{customer_id}/{arg_type}/{arg}]
++ Parameters
+    + customer_id(id) - Identificador do contratante
+    + arg_type (string) - Tipo de argumento para identificação do beneficiário
+    + arg (string) - Valor para o tipo argumento selecionado para pesquisa
+    
+### Consultar beneficiário [GET]
+
++ Response 200
+    
+    
+        {
+            "aditional_arg":"3578367860",
+            "aditional_arg_type":"CPF",
+            "plans":[
+                {"descricao":"Plano individual"},
+                {"descricao":"Plano integrado"}
+            ]            
+        }
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+### Atualizar dados beneficiário [PUT]
+
++ Request (application/json)
+
+
+        {
+              
+              "doc_type_id":1,
+              "dispatcher_organ":1,
+              "doc_emitter":1,
+              "emission_date":"2018-10-15",
+              "address":{
+                "address_code":"14085370",
+                "number":15,
+                "Line2":15,
+                "Line1":122,
+                "Estate":"SP",
+                "City":122
+              },
+              "contact":{
+                "email":"a@a.com",
+                "phone1":"16 991627596",
+                "enterprise_phone":"16 991627593",
+                "cellphone":"16991627593"
+              }
+        }
+
+           
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+#group Tipos de documento
+## Tipos de documento [/document_type]
+
+### Incluir Tipos de documento [POST]
+
++ Request (application/json)
+
+        {
+            "decription":"RG",
+            "status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/document_type/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todas Tipos de documento [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {
+                        "decription":"RG",
+                        "status":"Ativo",
+                        "id":1
+                    },
+                    {
+                        "decription":"RG",
+                        "status":"Ativo",
+                        "id":2
+                    }
+            ]
+           
+           
+
+## Tipos de documento identificadas [/document_type/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Tipos de documento [PUT]
+
++ Request (application/json)
+
+
+        {
+            "decription":"RG",
+            "status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/document_type/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Tipos de documento [GET]
++ Response 200
+
+         {
+            "decription":"RG",
+            "status":"Ativo",
+            "id":1
+         }
+           
++ Response 404
+
+#group Orgão expedidor
+## Orgão expedidor [/dispatcher_organ]
+
+### Incluir Orgão expedidor [POST]
+
++ Request (application/json)
+
+        {
+            "decription":"SSP",
+            "status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/dispatcher_organ/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todas Orgão expedidor [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {
+                        "decription":"SSP",
+                        "status":"Ativo",
+                        "id":1
+                    },
+                    {
+                        "decription":"SSP",
+                        "status":"Ativo",
+                        "id":2
+                    }
+            ]
+           
+           
+
+## Orgão expedidor identificado [/dispatcher_organ/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Tipos de documento [PUT]
+
++ Request (application/json)
+
+
+        {
+            "decription":"SSP",
+            "status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/dispatcher_organ/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Orgão expedidor [GET]
++ Response 200
+
+         {
+            "decription":"SSP",
+            "status":"Ativo",
+            "id":1
+         }
+           
++ Response 404
+
+#group Emissor de documento
+## Emissor de documento [/document_emitter]
+
+### Incluir Emissor de documento [POST]
+
++ Request (application/json)
+
+        {
+            "decription":"SSP",
+            "status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/document_emitter/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todas Emissor de documento [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {
+                        "decription":"SSP",
+                        "status":"Ativo",
+                        "id":1
+                    },
+                    {
+                        "decription":"SSP",
+                        "status":"Ativo",
+                        "id":2
+                    }
+            ]
+           
+           
+
+## Emissor de documento [/document_emitter/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Emissor de documento [PUT]
+
++ Request (application/json)
+
+
+        {
+            "decription":"SSP",
+            "status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/document_emitter/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Emissor de documento [GET]
++ Response 200
+
+         {
+            "decription":"SSP",
+            "status":"Ativo",
+            "id":1
+         }
+           
++ Response 404
+
+
+#group Estados
+## Estados [/state]
+
+### Incluir Estados [POST]
+
++ Request (application/json)
+
+        {
+            "decription":"São paulo",
+            "status":"Ativo"
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/state/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todas estados [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {
+                        "decription":"São paulo",
+                        "status":"Ativo",
+                        "id":1
+                    },
+                    {
+                        "decription":"São paulo",
+                        "status":"Ativo",
+                        "id":2
+                    }
+            ]
+           
+           
+
+## Estados identificado [/state/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Estados [PUT]
+
++ Request (application/json)
+
+
+        {
+            "decription":"São paulo",
+            "status":"Ativo"
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/state/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Estados [GET]
++ Response 200
+
+         {
+            "decription":"São paulo",
+            "status":"Ativo",
+            "id":1
+         }
+           
++ Response 404
+
+
+#group Cidades
+## Cidades [/city]
+
+### Incluir Cidades [POST]
+
++ Request (application/json)
+
+        {
+            "decription":"São paulo",
+            "status":"Ativo",
+            "state_id":1
+        }
+
+        
+        
++ Response 201 (application/json)
+    
+        {
+            "create_date":"2018-10-01 15:32",
+            "id":1,
+            "url":"/city/1"
+        }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
+           
+### Retornar todas Cidades [GET]
+
++ Response 200 (application/json)
+
+           [
+                    {
+                        "decription":"São paulo",
+                        "status":"Ativo",
+                        "id":1,
+                        "state_id":1
+                    },
+                    {
+                        "decription":"São paulo",
+                        "status":"Ativo",
+                        "id":2,
+                        "state_id":1
+                    }
+            ]
+           
+           
+
+## Cidades identificado [/city/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Cidades [PUT]
+
++ Request (application/json)
+
+
+        {
+            "decription":"São paulo",
+            "status":"Ativo",
+            "state_id":1
+        }
+
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/city/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+            [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
+
+### Retornar Cidades [GET]
++ Response 200
+
+         {
+            "decription":"São paulo",
+            "status":"Ativo",
+            "id":1,
+            "state_id":1
+         }
+           
++ Response 404
+
+
+
+# Group Utilização
+## Consulta de utilização [/beneficiary_use/{customer_id}/{beneficiary_code}]
++ Parameters
+    + customer_id(id) - Identificador do contratante
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+### Consultar beneficiário [GET]
+
++ Response 200
+    
+    
+        [
+           {
+              "provider":"P.A",
+              "date":"2018-10-22",
+              "unity":"Ambulatório",
+              "services":[
+                 {
+                    "description":"Consulta"
+                 }
+              ],
+              "beneficiary":"Fulano",
+              "number":21321312,
+              "status":"pago"
+           },
+           {
+              "provider":"Hospital sinhá junqueira",
+              "date":"2018-10-23",
+              "unity":"Ambulatório",
+              "services":[
+                 {
+                    "description":"Consulta"
+                 }
+              ],
+              "beneficiary":"Fulano",
+              "number":21321312,
+              "status":"pago"
+           }
+        ]
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+# Group Financeiro
+## Informe de rendimentos [/beneficiary_income/{customer_id}/{beneficiary_code}/{year}]
++ Parameters
+    + customer_id(id) - Identificador do contratante
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+### Consultar beneficiário [GET]
+
++ Response 200
+    
+    
+        
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+# Group Carteirinha
+## Solicitar segunda via de carteirinha [/beneficiary_card/{customer_id}/{beneficiary_code}]
++ Parameters
+    + customer_id(id) - Identificador do contratante
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+    
+### Consultar beneficiário [POST]
+
+        
++ Response 200
+    
+        {
+            "id":1,
+            "address":{
+                    "address_code":"14085370",
+                    "number":15,
+                    "Line2":15,
+                    "Line1":122,
+                    "Estate":"SP",
+                    "City":122
+                  },
+            "enterprise":"true"
+        }
+        
+        
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+## Solicitar segunda via de carteirinha [/beneficiary_card/{beneficiary_card_id}]
++ Parameters
+    + beneficiary_card_id (string) - Id da carteirinha retornar na pré solicitação
+    
+### Consultar beneficiário [POST]
+
+        
++ Response 200
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
