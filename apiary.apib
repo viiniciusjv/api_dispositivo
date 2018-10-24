@@ -111,6 +111,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     }
                 ]
             }
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ## Funcionalidades [/feature]
 
 ### Incluir Funcionalidade [POST]
@@ -140,6 +149,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todas as Funcionalidade [GET]
 
 + Response 200 (application/json)
@@ -170,7 +188,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     }
                 ]
             }     
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ## Funcionalidade identificada [/feature/{id}]
 + Parameters
     + id (int) - Identificador único da entidade
@@ -204,7 +230,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }           
 ### Retornar Funcionalidade específica [GET]
 + Response 200
 
@@ -216,7 +250,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             "SubFeatures":[]
         }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 # Group Dispositivos
 
 ## Pesquisa de dispositivos [/device/{?hash,type,customer,model,program_version,so_version,place,room,last_signal}]
@@ -262,7 +304,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
             }
         ]
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 ## Dispositivos [/device]
 
@@ -301,7 +351,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }           
 ### Retornar todos os Dispositivos [GET]
 
 + Response 200 (application/json)
@@ -334,7 +392,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
             }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }           
            
 
 ## Dispositivo identificado [/device/{id}]
@@ -377,7 +443,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Dispositivo específico [GET]
 + Response 200
 
@@ -395,7 +469,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 "RemoteAccess":{"Tipo":{"id":1,"Description":"TeamViewer"}, "Argumentos":{"Id":"Sdasdas","Senha":"asdaddsa"}}
         }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Integração
 ## Integração [/integration]
 
@@ -456,7 +538,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "status":"ativo" 
                  }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }       
            
 
 ## Integração identificado [/integration/{id}]
@@ -496,7 +586,16 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
 ### Retornar Integração específica [GET]
 + Response 200
 
@@ -511,7 +610,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 #group  Tipos de integração
 ## Tipos de integração [/integration_type]
@@ -544,7 +651,16 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
 ### Retornar todos as Tipos de integração [GET]
 
 + Response 200 (application/json)
@@ -561,7 +677,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "Status":"Ativo"
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Tipos de integração identificado [/integration_type/{id}]
@@ -597,7 +721,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Tipos de integração específica [GET]
 + Response 200
 
@@ -608,7 +740,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Ambiente
 ## Ambiente [/room]
 
@@ -641,6 +781,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 ### Retornar todos os Ambiente [GET]
 
@@ -660,7 +809,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "place":"1"
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Ambiente identificado [/room/{id}]
@@ -697,7 +854,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Ambiente específica [GET]
 + Response 200
 
@@ -709,7 +874,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 #group  Ações padrões
 ## Ações padrões [/default_action]
@@ -742,7 +915,16 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
 ### Retornar todos os Ações padrões [GET]
 
 + Response 200 (application/json)
@@ -760,7 +942,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "place":"1"
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }           
            
 
 ## Ações padrões identificado [/default_action/{id}]
@@ -796,7 +986,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Ações padrões específica [GET]
 + Response 200
 
@@ -807,7 +1005,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Sistemas Operacionais
 ## Sistemas Operacionais [/so]
 
@@ -840,7 +1046,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todos os Sistemas Operacionais [GET]
 
 + Response 200 (application/json)
@@ -859,7 +1073,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "device_type":"1"
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Sistemas Operacionais identificado [/so/{id}]
@@ -895,7 +1117,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Sistemas Operacionais [GET]
 + Response 200
 
@@ -940,7 +1170,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todos os Tipos de dispositivos [GET]
 
 + Response 200 (application/json)
@@ -957,7 +1195,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "Status":"Ativo"
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        } 
            
 
 ## Tipos de dispositivos identificado [/device_type/{id}]
@@ -1005,7 +1251,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 
 #group  Abrangência de versão
@@ -1055,7 +1309,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todos os Abrangência de versão [GET]
 
 + Response 200 (application/json)
@@ -1078,7 +1340,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                             sub_ranges:[]
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Abrangência de versão identificado [/version_range/{id}]
@@ -1117,7 +1387,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Abrangência de versão [GET]
 + Response 200
 
@@ -1131,7 +1409,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Modelos de dispositivos
 ## Modelos de dispositivos [/device_model]
 
@@ -1164,7 +1450,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todos os Modelos de dispositivos [GET]
 
 + Response 200 (application/json)
@@ -1181,7 +1475,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                             "device_type":"1"
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Abrangência de Modelos de dispositivos [/device_model/{id}]
@@ -1217,7 +1519,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Modelos de dispositivos [GET]
 + Response 200
 
@@ -1229,7 +1539,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 
 #group  Unidades do contratante
@@ -1264,7 +1582,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todos os Unidades do contratante [GET]
 
 + Response 200 (application/json)
@@ -1283,7 +1609,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "id":"2"
                 }
            ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Abrangência de Unidades do contratante [/place/{id}]
@@ -1319,7 +1653,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Unidades do contratante [GET]
 + Response 200
 
@@ -1331,7 +1673,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 #group  Tipo de contato contratante
 ## Tipo de contato contratante [/contact_type]
@@ -1364,7 +1714,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }    
 ### Retornar todos os Tipo de contato contratante [GET]
 
 + Response 200 (application/json)
@@ -1381,7 +1739,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "id":2
                 }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Tipo de contato contratante [/contact_type/{id}]
@@ -1416,7 +1782,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Tipo de contato contratante [GET]
 + Response 200
 
@@ -1427,7 +1801,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Contatos contratantes
 ## Contatos contratantes [/customer_contact]
 
@@ -1461,6 +1843,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 ### Retornar todos os Contatos contratantes [GET]
 
@@ -1484,7 +1875,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             }
 
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Contatos contratantes [/customer_contact/{id}]
@@ -1522,7 +1921,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Contatos contratantes [GET]
 + Response 200
 
@@ -1535,7 +1942,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Grupos de usuários
 ## Grupos de usuários [/user_group]
 
@@ -1568,7 +1983,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todos os Grupos de usuários [GET]
 
 + Response 200 (application/json)
@@ -1589,7 +2012,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 }
 
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Grupos de usuários [/user_group/{id}]
@@ -1625,7 +2056,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Grupos de usuários [GET]
 + Response 200
 
@@ -1637,7 +2076,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Usuários
 ## Grupos de usuários [/user]
 
@@ -1672,7 +2119,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todos os Grupos de usuários [GET]
 
 + Response 200 (application/json)
@@ -1696,7 +2151,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 }
 
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Grupos de usuários [/user/{id}]
@@ -1734,7 +2197,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Grupos de usuários [GET]
 + Response 200
 
@@ -1748,7 +2219,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Programas
 ## Programas [/program]
 
@@ -1797,7 +2276,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "id":2
                 }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Programas [/program/{id}]
@@ -1832,7 +2319,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Programas [GET]
 + Response 200
 
@@ -1843,7 +2338,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group  Versão
 ## Versões [/version]
 
@@ -1901,7 +2404,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Versões [GET]
 
 + Response 200 (application/json)
@@ -1970,7 +2481,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 "id":2
                 }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Versões [/version/{id}]
@@ -2031,7 +2550,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Versões [GET]
 + Response 200
 
@@ -2068,7 +2595,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 #group  Lançamento de versão
 ## Lançamento de versão [/version_launch]
@@ -2130,7 +2665,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Lançamento de versão [GET]
 
 + Response 200 (application/json)
@@ -2204,8 +2747,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                    "status":"Ativo"
                 }
             ]
-           
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 ## Lançamento de Versões identificada [/version_launch/{id}]
 + Parameters
@@ -2268,7 +2818,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Lançamentos Versões [GET]
 + Response 200
 
@@ -2308,7 +2866,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
         }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group Permissões Grupo
 ## Permissões Grupo [/group_privilege]
 
@@ -2382,7 +2948,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todas permissões Grupo [GET]
 
 + Response 200 (application/json)
@@ -2483,7 +3057,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "status":"Ativo"
                 }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Permissões Grupo identificadas [/group_privilege/{id}]
@@ -2561,7 +3143,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Permissões Grupo [GET]
 + Response 200
 
@@ -2614,7 +3204,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 #group Permissões Usuários
 ## Permissões Usuário [/user_privilege]
@@ -2689,7 +3287,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todas permissões Usuário [GET]
 
 + Response 200 (application/json)
@@ -2790,7 +3396,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                     "status":"Ativo"
                 }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
            
 
 ## Permissões Usuário identificadas [/user_privilege/{id}]
@@ -2868,7 +3482,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Permissões Usuário [GET]
 + Response 200
 
@@ -2921,13 +3543,20 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 # Group Beneficiário
-## Beneficiário identificado [/beneficiary/{customer_id}/{arg_type}/{arg}]
+## Beneficiário identificado [/beneficiary/{customer_id}/{beneficiary_code}]
 + Parameters
     + customer_id(id) - Identificador do contratante
-    + arg_type (string) - Tipo de argumento para identificação do beneficiário
-    + arg (string) - Valor para o tipo argumento selecionado para pesquisa
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
     
 ### Consultar beneficiário [GET]
 
@@ -2991,6 +3620,7 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                 "mensagem": Erro de banco de dados
             ]
         }
+
         
 #group Tipos de documento
 ## Tipos de documento [/document_type]
@@ -3023,7 +3653,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todas Tipos de documento [GET]
 
 + Response 200 (application/json)
@@ -3040,7 +3678,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                         "id":2
                     }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }   
            
 
 ## Tipos de documento identificadas [/document_type/{id}]
@@ -3076,7 +3722,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Tipos de documento [GET]
 + Response 200
 
@@ -3087,7 +3741,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
          }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group Orgão expedidor
 ## Orgão expedidor [/dispatcher_organ]
 
@@ -3119,7 +3781,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todas Orgão expedidor [GET]
 
 + Response 200 (application/json)
@@ -3136,7 +3806,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                         "id":2
                     }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }       
            
 
 ## Orgão expedidor identificado [/dispatcher_organ/{id}]
@@ -3172,7 +3850,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Orgão expedidor [GET]
 + Response 200
 
@@ -3183,7 +3869,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
          }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 #group Emissor de documento
 ## Emissor de documento [/document_emitter]
 
@@ -3215,7 +3909,16 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
 ### Retornar todas Emissor de documento [GET]
 
 + Response 200 (application/json)
@@ -3232,7 +3935,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                         "id":2
                     }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }          
            
 
 ## Emissor de documento [/document_emitter/{id}]
@@ -3268,7 +3979,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Emissor de documento [GET]
 + Response 200
 
@@ -3279,7 +3998,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
          }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 #group Estados
 ## Estados [/state]
@@ -3312,7 +4039,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }           
 ### Retornar todas estados [GET]
 
 + Response 200 (application/json)
@@ -3329,7 +4064,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                         "id":2
                     }
             ]
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }        
            
 
 ## Estados identificado [/state/{id}]
@@ -3376,7 +4119,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
          }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 #group Cidades
 ## Cidades [/city]
@@ -3410,7 +4161,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
              
            }
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar todas Cidades [GET]
 
 + Response 200 (application/json)
@@ -3429,8 +4188,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
                         "state_id":1
                     }
             ]
-           
-           
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 ## Cidades identificado [/city/{id}]
 + Parameters
@@ -3466,7 +4232,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
              
            }
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 ### Retornar Cidades [GET]
 + Response 200
 
@@ -3478,7 +4252,15 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
          }
            
 + Response 404
++ Response 403
++ Response 500
 
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
 
 
 # Group Utilização
@@ -3588,14 +4370,644 @@ Api que da suporte as funcionalidades da intranet que faz a gestão de estados d
             ]
         }
         
-## Solicitar segunda via de carteirinha [/beneficiary_card/{beneficiary_card_id}]
+## Confirmar segunda via de carteirinha [/beneficiary_card/confirm/{customer_id}/{beneficiary_card_id}]
 + Parameters
     + beneficiary_card_id (string) - Id da carteirinha retornar na pré solicitação
-    
-### Consultar beneficiário [POST]
+    + customer_id(id) - Identificador do contratante
+### Confirmar segunda via de carteirinha [POST]
 
         
 + Response 200
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+# group Cobrança
+## Cobrança Financeiro [/billing/{customer_id}/{beneficiary_code}/{start_date}/{end_date}]
++ Parameters
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+    + start_date (date) - Data inicial do período a ser consultado
+    + end_date (date) - Data final do período a ser consultado
+    + customer_id(id) - Identificador do contratante
+### Extrato financeiro [GET]
+
+        
++ Response 200
+        
+        [  
+           {  
+              "reference":"out/2017",
+              "billing_day":"2018-10-24",
+              "pay_day":"2018-10-24",
+              "value":"R$ 200,00",
+              "details":[  
+                 {  
+                    "item":"Plano",
+                    "value":"R$100,00"
+                 },
+                 {  
+                    "item":"Coparticipação",
+                    "value":"R$100,00"
+                 }
+              ]
+           },
+           {  
+              "reference":"nov/2017",
+              "billing_day":"2018-10-24",
+              "pay_day":"2018-10-24",
+              "value":"R$ 15,34",
+              "details":[  
+                 {  
+                    "item":"Plano",
+                    "value":"R$100,00"
+                 },
+                 {  
+                    "item":"Coparticipação",
+                    "value":"R$100,00"
+                 }
+              ]
+           }
+        ]
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+## Cobrança Coparticipação [/billing/partaking/{customer_id}/{beneficiary_code}/{start_date}/{end_date}]
++ Parameters
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+    + start_date (date) - Data inicial do período a ser consultado
+    + end_date (date) - Data final do período a ser consultado
+    + customer_id(id) - Identificador do contratante
+### Extrato coparticipação [GET]
+
+        
++ Response 200
+        
+        [  
+           {  
+              "month":"out/2017",
+              "value":"R$ 200,00",
+              "details":[  
+                 {  
+                    "date":"2018-10-24",
+                    "value":"R$100,00",
+                    "provider":"Documenta",
+                    "status":"Pago",
+                    "type":"N"
+                 },
+                  {  
+                    "date":"2018-10-24",
+                    "value":"R$100,00",
+                    "provider":"Documenta",
+                    "status":"Pago",
+                    "type":"N"
+                 }
+              ]
+           },
+           {  
+              "month":"out/2017",
+              "value":"R$ 200,00",
+              "details":[  
+                 {  
+                    "date":"2018-10-24",
+                    "value":"R$100,00",
+                    "provider":"Documenta",
+                    "status":"Pago",
+                    "type":"N"
+                 },
+                  {  
+                    "date":"2018-10-24",
+                    "value":"R$100,00",
+                    "provider":"Documenta",
+                    "status":"Pago",
+                    "type":"N"
+                 }
+              ]
+           }
+        ]
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+## Cobrança boleto [/billing/invoice/{customer_id}/{beneficiary_code}]
++ Parameters
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+    + customer_id(id) - Identificador do contratante
+    
+### Retornar segunda via de boleto disponiveis [GET]
+
+        
++ Response 200
+        
+        [  
+           {  
+              "month":"out/2017",
+              "value":"R$ 200,00"
+           },
+           {  
+              "month":"out/2017",
+              "value":"R$ 200,00"
+           }
+        ]
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+## Cobrança detalhes boleto [/billing/invoice/{customer_id}/{beneficiary_code}/{month}]
++ Parameters
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+    + month (string) - Código de identificação do beneficiário na operadora
+    + customer_id(id) - Identificador do contratante
+### Retornar segunda via de boleto disponiveis [GET]
+
+        
++ Response 200
+         
+           {  
+              "number":"9999999999 99999999999 99999999999 9999999999",
+              "bank":"Itau",
+              "billing_date":"2018-10-24",
+              "emission_date":"2018-10-24",
+              "internal_number":"78789789798",
+              "document_number":"47897897897",
+              "acount":"1515-9",
+              "agency":"3232",
+              "receiver_document":"4564564654",
+              "fine":"R$30,00",
+              "interest":"R$ 15,00"
+              "value":"R$ 200,00",
+              "deduction":#R$ 100,00",
+              "amount_chaged":"R$ 145,00",
+              "wallet":17,
+              "payment_place":"Qualquer agência",
+              "payer_agency":"",
+              "payer_account":"",
+              "payer":"",
+              "instructions":"Após vencimento pagável apenas em lojas do banco itau"
+           }
+    
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+## Cobrança boleto [/billing/invoice/{customer_id}/{beneficiary_code}/{month}/{email}]
++ Parameters
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+    + month (string) - Código de identificação do beneficiário na operadora
+    + customer_id(int) - Identificador do contratante
+    + email (string) - Email para envio de boleto
+### Enviar boleto por email [POST]
+
+        
++ Response 200
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+# Group Agendamento
+
+## Agendamento [/schedulling/{customer_id}/{beneficiary_code}/{date_time}/{place_id}]
++ Parameters
+    + customer_id(id) - Identificador do contratante
+    + beneficiary_code (string) - Código de identificação do beneficiário na operadora
+    + date_time (date) - Data e hora atual
+    + place_id (int) -  Código da unidade em que a consulta está sendo executada
+### Consultar beneficiário [GET]
+
++ Response 200
+    
+    
+        [
+            {
+                "provider":"Fernando Lemos",
+                "speciality":"cardiologista",
+                "date_time":"1233",
+                "place":Dsdasdsa",
+                "place_id":1,
+                "internal_code":12
+            },
+            {
+                "provider":"Fernando Lemos",
+                "speciality":"cardiologista",
+                "date_time":"1233",
+                "place":Dsdasdsa",
+                "place_id":1,
+                "internal_code":21
+            }
+        ]
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+
+
+## Agendamento específico [/schedulling/{customer_id}/{internal_code}]
++ Parameters
+    + customer_id(id) - Identificador do contratante
+    + internal_code (int) - Código de identificação do atendimento na operadora
+    
+### Confirmar chegada[POST]
+
++ Response 200
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+        
+#Group Contratante
+## Contratante [/customer]
+
+### Incluir Contratante [POST]
+
++ Request (application/json)
+
+        {
+            "name":"São Francisco Saúde",
+            "legal_name":"São francisco sáude LTDA",
+            "document":"",
+            "document_type_id":1,
+            "contacts":[
+                {
+                    "value":"456456465",
+                    "customer_id":1,
+                    "contact_type":1,
+                    "status":"Ativo"   ,
+                    "id":1
+                }
+            ],
+            "address":{
+                "address_code":"14085370",
+                "number":15,
+                "Line2":15,
+                "Line1":122,
+                "Estate":"SP",
+                "City":122
+              },
+             "theme":{
+                "primary":{
+                    "dark":"#FFFFFF",
+                    "light":"#FFFFFF",
+                    "std":"#FFFFFF",
+                    "accent":"#FFFFFF"
+                },
+                "text":{
+                    "icons":"#FFFFFF",
+                    "primary":"#FFFFFF",
+                    "second":"#FFFFFF",
+                    "divider":"#FFFFFF"
+                }
+             },
+             "unities":[
+                {
+                    "decription":"Atendimento",
+                    "rooms":[
+                        {"description":"Recepção"}
+                    ]
+                }
+             ]
+             "services":{
+                {"description":"Locação totens"},
+                {"description":"Tercepta completo"}
+             }
+             
+        }
+        
++ Response 201 (application/json)
+    
+           {
+                "create_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/customer/1"
+           }
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }           
+### Retornar todos os Contratante [GET]
+
++ Response 200 (application/json)
+
+           [
+              {
+            "name":"São Francisco Saúde",
+            "legal_name":"São francisco sáude LTDA",
+            "document":"",
+            "document_type_id":1,
+            "contacts":[
+                {
+                    "value":"456456465",
+                    "customer_id":1,
+                    "contact_type":1,
+                    "status":"Ativo"   ,
+                    "id":1
+                }
+            ],
+            "address":{
+                "address_code":"14085370",
+                "number":15,
+                "Line2":15,
+                "Line1":122,
+                "Estate":"SP",
+                "City":122
+              },
+             "theme":{
+                "primary":{
+                    "dark":"#FFFFFF",
+                    "light":"#FFFFFF",
+                    "std":"#FFFFFF",
+                    "accent":"#FFFFFF"
+                },
+                "text":{
+                    "icons":"#FFFFFF",
+                    "primary":"#FFFFFF",
+                    "second":"#FFFFFF",
+                    "divider":"#FFFFFF"
+                }
+             },
+             "unities":[
+                {
+                    "decription":"Atendimento",
+                    "rooms":[
+                        {"description":"Recepção"}
+                    ]
+                }
+             ]
+             "services":{
+                {"description":"Locação totens"},
+                {"description":"Tercepta completo"}
+             }
+             
+        },
+           {
+            "name":"São Francisco Saúde",
+            "legal_name":"São francisco sáude LTDA",
+            "document":"",
+            "document_type_id":1,
+            "contacts":[
+                {
+                    "value":"456456465",
+                    "customer_id":1,
+                    "contact_type":1,
+                    "status":"Ativo"   ,
+                    "id":1
+                }
+            ],
+            "address":{
+                "address_code":"14085370",
+                "number":15,
+                "Line2":15,
+                "Line1":122,
+                "Estate":"SP",
+                "City":122
+              },
+             "theme":{
+                "primary":{
+                    "dark":"#FFFFFF",
+                    "light":"#FFFFFF",
+                    "std":"#FFFFFF",
+                    "accent":"#FFFFFF"
+                },
+                "text":{
+                    "icons":"#FFFFFF",
+                    "primary":"#FFFFFF",
+                    "second":"#FFFFFF",
+                    "divider":"#FFFFFF"
+                }
+             },
+             "unities":[
+                {
+                    "decription":"Atendimento",
+                    "rooms":[
+                        {"description":"Recepção"}
+                    ]
+                }
+             ]
+             "services":{
+                {"description":"Locação totens"},
+                {"description":"Tercepta completo"}
+             }
+             
+        }
+           ]
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }           
+           
+
+## Contratante identificado [/customer/{id}]
++ Parameters
+    + id (int) - Identificador único da entidade
+
+### Alterar Contratante [PUT]
+
++ Request (application/json)
+
+            {
+            "name":"São Francisco Saúde",
+            "legal_name":"São francisco sáude LTDA",
+            "document":"",
+            "document_type_id":1,
+            "contacts":[
+                {
+                    "value":"456456465",
+                    "customer_id":1,
+                    "contact_type":1,
+                    "status":"Ativo"   ,
+                    "id":1
+                }
+            ],
+            "address":{
+                "address_code":"14085370",
+                "number":15,
+                "Line2":15,
+                "Line1":122,
+                "Estate":"SP",
+                "City":122
+              },
+             "theme":{
+                "primary":{
+                    "dark":"#FFFFFF",
+                    "light":"#FFFFFF",
+                    "std":"#FFFFFF",
+                    "accent":"#FFFFFF"
+                },
+                "text":{
+                    "icons":"#FFFFFF",
+                    "primary":"#FFFFFF",
+                    "second":"#FFFFFF",
+                    "divider":"#FFFFFF"
+                }
+             },
+             "unities":[
+                {
+                    "decription":"Atendimento",
+                    "rooms":[
+                        {"description":"Recepção"}
+                    ]
+                }
+             ]
+             "services":{
+                {"description":"Locação totens"},
+                {"description":"Tercepta completo"}
+             }
+             
+        }
+        
++ Response 201 (application/json)
+
+           {
+                "update_date":"2018-10-01 15:32",
+                "id":1,
+                "url":"/customer/1"
+           }
+           
++ Response 400 (application/json)
+
+           {
+             [  
+            {"Field":["Validação","Validação"]},
+            {"Field":["Validação","Validação"]}
+            
+            ]
+             
+           }
++ Response 404
++ Response 403
++ Response 500
+
+        {
+            [
+                "codigo":12,
+                "mensagem": Erro de banco de dados
+            ]
+        }
+### Retornar Contratante específico [GET]
++ Response 200
+
+         {
+            "name":"São Francisco Saúde",
+            "legal_name":"São francisco sáude LTDA",
+            "document":"",
+            "document_type_id":1,
+            "contacts":[
+                {
+                    "value":"456456465",
+                    "customer_id":1,
+                    "contact_type":1,
+                    "status":"Ativo"   ,
+                    "id":1
+                }
+            ],
+            "address":{
+                "address_code":"14085370",
+                "number":15,
+                "Line2":15,
+                "Line1":122,
+                "Estate":"SP",
+                "City":122
+              },
+             "theme":{
+                "primary":{
+                    "dark":"#FFFFFF",
+                    "light":"#FFFFFF",
+                    "std":"#FFFFFF",
+                    "accent":"#FFFFFF"
+                },
+                "text":{
+                    "icons":"#FFFFFF",
+                    "primary":"#FFFFFF",
+                    "second":"#FFFFFF",
+                    "divider":"#FFFFFF"
+                }
+             },
+             "unities":[
+                {
+                    "decription":"Atendimento",
+                    "rooms":[
+                        {"description":"Recepção"}
+                    ]
+                }
+             ]
+             "services":{
+                {"description":"Locação totens"},
+                {"description":"Tercepta completo"}
+             }
+             
+        }
 + Response 404
 + Response 403
 + Response 500
